@@ -12,7 +12,7 @@ const firebaseFunctionsBaseUrlDevelopment = `http://localhost:5001/${FIREBASE_PR
 const firebaseFunctionsBaseUrl = process.env.NODE_ENV === 'production' ? firebaseFunctionsBaseUrlProduction : firebaseFunctionsBaseUrlDevelopment;
 const stripePromise = PAYMENT_METHODS.includes('stripe') ? loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY) : null;
 
-export default function StripeCheckoutWrapper({ total, name, email, processing, setProcessing, setError, saveOrderToFirebase }) {
+export default function StripeCheckoutWrapper({ total, name, email, processing, setProcessing, setError, saveOrderToFirebase, updateOrderInFirebase }) {
   const [clientSecret, setClientSecret] = useState(null);
   const clientSecretRef = useRef(null);
 
@@ -88,7 +88,7 @@ export default function StripeCheckoutWrapper({ total, name, email, processing, 
             setError={setError}
             processing={processing} setProcessing={setProcessing}
             clientSecretRef={clientSecretRef}
-            saveOrderToFirebase={saveOrderToFirebase}
+            saveOrderToFirebase={saveOrderToFirebase} updateOrderInFirebase={updateOrderInFirebase}
           />
         </Elements>
       :

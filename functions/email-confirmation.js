@@ -78,7 +78,7 @@ export const sendEmailConfirmation = functions.database.ref(`${CONFIG_DATA_PATH}
       await mailTransport.sendMail(mailOptions);
       functions.logger.log(`Receipt sent to:`, person.email);
     } catch(error) {
-      functions.logger.error('There was an error while sending the email:', error);
+      functions.logger.error('There was an error while sending the email confirmation:', error);
     }
   }
 

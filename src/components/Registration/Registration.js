@@ -12,12 +12,14 @@ import { cache, cached } from 'utils';
 import { Box, Checkbox } from "@mui/material";
 import { StyledPaper, StyledLink, Paragraph } from 'components/Layout/SharedStyles';
 import config from 'config';
-const { PAYMENT_METHODS, PAYPAL_OPTIONS, ORDER_DEFAULTS, TITLE, CONFIRMATION_CHECK_TITLE, CONFIRMATION_PAYPAL_TITLE, SANDBOX_MODE } = config;
+const { PAYMENT_METHODS, PAYPAL_OPTIONS, ORDER_DEFAULTS, TITLE, CONFIRMATION_CHECK_TITLE, CONFIRMATION_PAYPAL_TITLE, SANDBOX_MODE, SHOW_PRE_REGISTRATION } = config;
 
 export default function Registration() {
   const [registering, setRegistering] = useState(false);
   return (
-    registering ? <RealRegistration /> : <PreRegistration setRegistering={setRegistering} />
+    SHOW_PRE_REGISTRATION ? (
+      registering ? <RealRegistration /> : <PreRegistration setRegistering={setRegistering} />
+    ) : <RealRegistration />
   );
 }
 

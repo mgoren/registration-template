@@ -231,6 +231,7 @@ const DANCES = [
 // *********************************************************************************************
 const config = {
   SANDBOX_MODE: true, // for testing only
+  SHOW_PRE_REGISTRATION: false,
   NUM_PAGES: 3,
   STEPS: [
     {key: 1, label: 'Contact'},

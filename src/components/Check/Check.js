@@ -4,12 +4,14 @@ import { Typography, Box, Button } from '@mui/material';
 import config from 'config';
 const { CAPTCHA_KEY, CHECK_ADDRESS, CHECK_TO } = config;
 
-export default function Check({ saveOrderToFirebase, processing, setProcessing }) {
+export default function Check({ saveOrderToFirebase, updateOrderInFirebase, processing }) {
   const [verified, setVerified] = useState(false);
 
   const handleRegister = async () => {
-    setProcessing(true);
-    saveOrderToFirebase('check');
+    const isOrderSaved = await saveOrderToFirebase(); // initial order without payment info
+    if (isOrderSaved) {
+      await updateOrderInFirebase({ electronicPaymentId: 'check' });
+    }
   }
 
   return (
